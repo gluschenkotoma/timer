@@ -14,7 +14,7 @@ class Timer {
   constructor(finishDate) {
     // // Инициализация свойств экземпля
     this.finishDate = finishDate.getTime(); //преобразование в милисекунды
-    this.intervalID = null; //setInterval
+    this.intervalID = null; //записать в свойство (переменную ) setInterval, для возможности отмены по ID
     this.deltaTime = 0; //deltaTime
   }
 
@@ -24,17 +24,18 @@ class Timer {
       let currentDate = Date.now(); //текущее время
       this.deltaTime = this.finishDate - currentDate;
 
-      this.insertData(daysContent, this.getDaysCount(this.deltaTime)); //вызов метода insertData -> insertData(place, value)->ссылка и метод getDaysCount в котором вызван метод padValue
+      this.insertData(daysContent, this.getDaysCount(this.deltaTime)); //вызов метода insertData(метод добавления контента в <p>) -> insertData(place, value)->в place - ссылка,в value -  метод getDaysCount в котором вызван метод padValue
       this.insertData(hoursContent, this.getHoursCount(this.deltaTime));
       this.insertData(minsContent, this.getMinsCount(this.deltaTime));
       this.insertData(secondsContent, this.getSecondsCount(this.deltaTime));
     }, 1000);
   }
+  // фу-я на слушателе, при клике прекратить интервал, значения обнулить
   finish() {
-    clearInterval(this.intervalID);
-    this.clearClockFace();
+    clearInterval(this.intervalID); //прекратить интервал
+    this.clearClockFace(); //вызов фу-и clearClockFace
   }
-  // ============
+  // фу-я перезаписи контента в <p>, перезаписать значения таймера на "00", обнулить
   clearClockFace() {
     daysContent.textContent = "00";
     hoursContent.textContent = "00";
@@ -80,5 +81,5 @@ const myTimer = new Timer(new Date("Dec 31, 2021"));
 // myTimer.start(); //запуск метода старт
 console.log(myTimer);
 
-startBtn.addEventListener("click", myTimer.start.bind(myTimer));
-stopBtn.addEventListener("click", myTimer.finish.bind(myTimer));
+startBtn.addEventListener("click", myTimer.start.bind(myTimer)); //слушатель при клике на кнопку старт, прибайндить функцию start
+stopBtn.addEventListener("click", myTimer.finish.bind(myTimer)); //слушатель при клике на кнопку финиш, прибайндить функцию finish
