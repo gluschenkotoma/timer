@@ -1,5 +1,6 @@
-// import './js/timer.js'
-import './js/timerClass.js'
+// import "./js/timer.js";
+import "./js/timerClass.js";
+// import "./js/timerFunction.js";
 
 // const date1 = new Date('December 17,1995 03:24:00')
 // const date2 = new Date('1995-12-17T03:24:00')
